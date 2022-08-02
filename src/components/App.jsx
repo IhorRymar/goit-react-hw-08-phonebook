@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import ContactForm from './Phonebook/ContactForm';
-import ContactItem from './Phonebook/ContactItem';
 import ContactList from './Phonebook/ContactList';
 import ContactFilter from './Phonebook/ContactFilter';
 import css from './Phonebook/ContactsStyle.module.css';
@@ -56,11 +55,14 @@ class App extends Component {
         <ContactForm onSubmit={this.addContacts} />
         <h3 className={css.title}>Contacts</h3>
         <ContactFilter filter={filter} onChange={this.changeFilter} />
-        <ContactList>
-          <ContactItem
+        <ContactList
+          contacts={visibleContact}
+          onDeleteContact={this.deleteContact}
+        >
+          {/* <ContactItem
             contacts={visibleContact}
             onDeleteContact={this.deleteContact}
-          />
+          /> */}
         </ContactList>
       </div>
     );
