@@ -1,13 +1,13 @@
 import React from 'react';
 import css from '../Phonebook/ContactsStyle.module.css';
+import ContactsListItem from './ContactsListItem';
 import PropTypes from 'prop-types';
 
-const ContactList = ({ children, contacts, onDeleteContact }) => (
+const ContactList = ({ contacts, onDeleteContact }) => (
   <>
-    {children}
     <ul className={css.list}>
       {contacts.map(({ name, number, id }) => (
-        <li key={id} className={css.item}>
+        <ContactsListItem key={id}>
           {name}: <span className={css.item}>{number}</span>
           <button
             type="button"
@@ -18,14 +18,13 @@ const ContactList = ({ children, contacts, onDeleteContact }) => (
           >
             Delete
           </button>
-        </li>
+        </ContactsListItem>
       ))}
     </ul>
   </>
 );
 
 ContactList.propTypes = {
-  children: PropTypes.object.isRequired,
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
