@@ -6,24 +6,36 @@ import css from './Phonebook/ContactsStyle.module.css';
 
 class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
   };
 
-  addContacts = data => {
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    const { contacts } = this.state;
+
+    if (contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+  }
+
+  addContacts = newContact => {
     const { contacts } = this.state;
 
     contacts.find(
-      contact => contact.name.toLowerCase() === data.name.toLowerCase()
+      contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
     )
-      ? alert(`${data.name} is already in contact`)
+      ? alert(`${newContact.name} is already in contact`)
       : this.setState(prevState => ({
-          contacts: [data, ...prevState.contacts],
+          contacts: [newContact, ...prevState.contacts],
         }));
   };
 
@@ -58,12 +70,7 @@ class App extends Component {
         <ContactList
           contacts={visibleContact}
           onDeleteContact={this.deleteContact}
-        >
-          {/* <ContactItem
-            contacts={visibleContact}
-            onDeleteContact={this.deleteContact}
-          /> */}
-        </ContactList>
+        ></ContactList>
       </div>
     );
   }
