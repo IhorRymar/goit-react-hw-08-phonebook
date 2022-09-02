@@ -1,21 +1,39 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { connect } from 'react-redux/es/exports';
+import { addContact } from 'components/redux/contacts/contacts-actions';
+import { getContacts } from 'components/redux/contacts/contacts-selectors';
+
 import css from '../Phonebook/ContactsStyle.module.css';
 import PropTypes from 'prop-types';
 
 class ContactForm extends Component {
   state = {
+    id: nanoid(),
     name: '',
     number: '',
   };
 
   static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
+    addContact: PropTypes.func.isRequired,
+  };
+
+  checkCorrectInput = (name, number) => {
+    const { addContact } = this.props;
+    if (number && name !== '') {
+      addContact({ ...this.state });
+    } else if (name === '') {
+      alert(`Please, enter a name'`);
+    }
   };
 
   handleSubmit = evt => {
     evt.preventDefault();
-    this.props.onSubmit(this.state);
+    const { contacts } = this.props;
+    const { name, number } = this.state;
+    contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase())
+      ? alert(`${name} is already in contact`)
+      : this.checkCorrectInput(name, number);
     this.reset();
   };
 
@@ -27,7 +45,7 @@ class ContactForm extends Component {
   };
 
   handleChange = evt => {
-    const { name, value } = evt.currentTarget;
+    const { name, value } = evt.target;
     this.setState({
       [name]: value,
       id: nanoid(),
@@ -74,4 +92,12 @@ class ContactForm extends Component {
   }
 }
 
-export default ContactForm;
+const mapStateToProps = state => ({
+  contacts: getContacts(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  addContact: id => dispatch(addContact(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux/es/exports';
+import { removeContact } from 'components/redux/contacts/contacts-actions';
 import css from '../Phonebook/ContactsStyle.module.css';
 import ContactsListItem from './ContactsListItem';
 import PropTypes from 'prop-types';
@@ -24,6 +26,22 @@ const ContactList = ({ contacts, onDeleteContact }) => (
   </>
 );
 
+const getVisibleContact = (contacts, filter) => {
+  const normalizedfilter = filter.toLowerCase();
+
+  return contacts.filter(({ name }) =>
+    name.toLowerCase().includes(normalizedfilter)
+  );
+};
+
+const mapStateToProps = ({ contacts, filter }) => ({
+  contacts: getVisibleContact(contacts, filter),
+});
+
+const mapDispatchToProps = dispatch => ({
+  onDeleteContact: id => dispatch(removeContact(id)),
+});
+
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
@@ -35,4 +53,4 @@ ContactList.propTypes = {
   onDeleteContact: PropTypes.func.isRequired,
 };
 
-export default ContactList;
+export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
