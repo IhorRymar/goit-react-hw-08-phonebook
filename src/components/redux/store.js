@@ -20,6 +20,8 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['filter'], // якщо потрібно щось виключити
+  // whitelist: 'contacts', // якщо потрібно відобразити тільки це
 };
 
 const rootReducer = combineReducers({
@@ -29,7 +31,7 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = configureStore({
+export const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware({
     serializableCheck: {
@@ -39,6 +41,4 @@ const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
 });
 
-const persistor = persistStore(store);
-
-export default { store, persistor };
+export const persistor = persistStore(store);

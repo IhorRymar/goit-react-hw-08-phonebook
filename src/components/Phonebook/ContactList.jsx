@@ -42,6 +42,8 @@ const mapDispatchToProps = dispatch => ({
   onDeleteContact: id => dispatch(removeContact(id)),
 });
 
+export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
+
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
@@ -52,5 +54,3 @@ ContactList.propTypes = {
   ),
   onDeleteContact: PropTypes.func.isRequired,
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactList);

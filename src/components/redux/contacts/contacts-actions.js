@@ -1,6 +1,5 @@
 import { nanoid } from 'nanoid';
 import { createAction } from '@reduxjs/toolkit';
-// import { ADD_CONTACT, REMOVE_CONTACT } from './contacts-types';
 
 export const addContact = createAction('contacts/add', payload => ({
   payload: {
