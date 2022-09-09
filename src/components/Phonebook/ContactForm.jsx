@@ -5,32 +5,32 @@ import css from '../Phonebook/ContactsStyle.module.css';
 
 const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
   const handleChange = evt => {
     const { value } = evt.currentTarget;
-    evt.currentTarget.name === 'name' ? setName(value) : setNumber(value);
+    evt.currentTarget.name === 'name' ? setName(value) : setPhone(value);
   };
 
-  const newContact = (name, number) => {
+  const newContact = (name, phone) => {
     return {
       id: nanoid(),
       name,
-      number,
+      phone,
     };
   };
 
   const handleSubmit = evt => {
     evt.preventDefault();
 
-    const contact = newContact(name, number);
+    const contact = newContact(name, phone);
     onSubmit(contact);
     reset();
   };
 
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -56,7 +56,7 @@ const ContactForm = ({ onSubmit }) => {
           type="tel"
           onChange={handleChange}
           name="number"
-          value={number}
+          value={phone}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required

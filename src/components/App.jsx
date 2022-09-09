@@ -1,15 +1,23 @@
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import ContactForm from './Phonebook/ContactForm';
 import ContactList from './Phonebook/ContactList';
 import Container from './Phonebook/Container';
+
 import css from './Phonebook/ContactsStyle.module.css';
 
+// import {
+//   addContact,
+//   removeContact,
+// } from '../components/redux/contacts/contacts-slice';
+// import { fetchContacts } from './redux/contacts/contacts-operations';
 import {
+  fetchContacts,
   addContact,
   removeContact,
-} from '../components/redux/contacts/contacts-slice';
-import { setFilter } from '../components/redux/filter/filter-slice';
+} from './redux/contacts/contacts-operations';
+import { setFilter } from '../components/redux/filter/filter-actions';
 import { getFilteredContacts } from '../components/redux/contacts/contacts-selectors';
 import { getFilter } from '../components/redux/filter/filter-selectors';
 
@@ -19,13 +27,12 @@ const App = () => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   const onAddContact = payload => {
-    const findContact = contacts.find(contact =>
-      contact.name.toLowerCase().includes(payload.name.toLowerCase())
-    );
-    findContact
-      ? alert(`${payload.name} is already in contact`)
-      : dispatch(addContact(payload));
+    dispatch(addContact(payload));
   };
 
   const onRemoveContact = payload => {
