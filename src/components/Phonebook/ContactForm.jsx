@@ -1,11 +1,25 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'components/redux/contacts/contacts-operations';
+import { getFilteredContacts } from 'components/redux/contacts/contacts-selectors';
 import { nanoid } from '@reduxjs/toolkit';
 
 import css from '../Phonebook/ContactsStyle.module.css';
 
-const ContactForm = ({ onSubmit }) => {
+const ContactForm = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+
+  const contacts = useSelector(getFilteredContacts);
+
+  const dispatch = useDispatch();
+
+  const onSubmit = data => {
+    if (contacts.find(contact => contact.name === data.name)) {
+      return alert(`Contact of ${data.name} is already exist!`);
+    }
+    dispatch(addContact(data));
+  };
 
   const handleChange = evt => {
     const { value } = evt.currentTarget;
