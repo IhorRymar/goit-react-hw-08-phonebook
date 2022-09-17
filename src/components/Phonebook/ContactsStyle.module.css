@@ -3,49 +3,11 @@
 }
 
 ul {
-  width: 500px;
   padding: 0;
 }
 
 span {
-  margin-left: 10px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  max-width: 250px;
-}
-
-.input {
-  margin-bottom: 30px;
-  height: 30px;
-  border-radius: 15px;
-  width: 250px;
-  cursor: pointer;
-  padding-left: 15px;
-}
-
-.label {
-  font-size: 24px;
-  margin-bottom: 8px;
-}
-.btn {
-  width: 100px;
-  margin-left: 12px;
-  height: 34px;
-  background: rgb(84, 119, 214);
-  color: black;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-  transform: scale(1);
-  transition-duration: 300ms;
-}
-.btn:hover,
-.btn:focus {
-  background: rgb(185, 25, 25);
-  color: white;
+  margin-right: 10px;
 }
 
 .item {
@@ -56,4 +18,27 @@ span {
 
 .item:not(:last-child) {
   margin-bottom: 9px;
+}
+
+.myContactsContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container:not(:last-child) {
+  margin-right: 75px;
+}
+
+.contactForm {
+  width: 240px;
+}
+
+.filterForm {
+  width: 320px;
 }

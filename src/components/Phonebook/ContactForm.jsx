@@ -1,18 +1,22 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'components/redux/contacts/contacts-operations';
 import { getFilteredContacts } from 'components/redux/contacts/contacts-selectors';
-import { nanoid } from '@reduxjs/toolkit';
 
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
+import useForm from 'components/shared/hooks/useForm';
 import css from '../Phonebook/ContactsStyle.module.css';
 
 const ContactForm = () => {
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-
   const contacts = useSelector(getFilteredContacts);
 
   const dispatch = useDispatch();
+
+  const initialState = {
+    name: '',
+    number: '',
+  };
 
   const onSubmit = data => {
     if (contacts.find(contact => contact.name === data.name)) {
@@ -21,66 +25,43 @@ const ContactForm = () => {
     dispatch(addContact(data));
   };
 
-  const handleChange = evt => {
-    const { value } = evt.currentTarget;
-    evt.currentTarget.name === 'name' ? setName(value) : setPhone(value);
-  };
-
-  const newContact = (name, phone) => {
-    return {
-      id: nanoid(),
-      name,
-      phone,
-    };
-  };
-
-  const handleSubmit = evt => {
-    evt.preventDefault();
-
-    const contact = newContact(name, phone);
-    onSubmit(contact);
-    reset();
-  };
-
-  const reset = () => {
-    setName('');
-    setPhone('');
-  };
+  const { state, handleChange, handleSubmit } = useForm({
+    initialState,
+    onSubmit,
+  });
 
   return (
-    <form className={css.form} onSubmit={handleSubmit}>
-      <label className={css.label}>
-        Name
-        <input
-          className={css.input}
+    <Form onSubmit={handleSubmit} className={css.contactForm}>
+      <Form.Group className="mb-3" controlId="formContactName">
+        <Form.Label>Name</Form.Label>
+        <Form.Control
           type="text"
-          onChange={handleChange}
+          placeholder="Enter name"
+          value={state.name}
           name="name"
-          value={name}
+          onChange={handleChange}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
         />
-      </label>
-
-      <label className={css.label}>
-        Number
-        <input
-          className={css.input}
-          type="tel"
-          onChange={handleChange}
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formContactNumber">
+        <Form.Label>Phone number</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter number"
+          value={state.number}
           name="number"
-          value={phone}
+          onChange={handleChange}
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
-      </label>
-
-      <button className={css.btn} type="submit">
+      </Form.Group>
+      <Button variant="primary" type="submit">
         Add contact
-      </button>
-    </form>
+      </Button>
+    </Form>
   );
 };
 

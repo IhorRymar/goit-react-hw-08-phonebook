@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../shared/api/apiContacts';
 
 export const fetchContacts = createAsyncThunk(
-  'contscts/fetch',
+  'contacts/fetch',
   async (_, thunkAPI) => {
     try {
       const data = await api.getContacts();
@@ -25,7 +25,7 @@ const isDublicate = ({ name }, contacts) => {
 };
 
 export const addContact = createAsyncThunk(
-  'contscts/add',
+  'contacts/add',
   async (data, { rejectWithValue }) => {
     try {
       const result = await api.addContact(data);

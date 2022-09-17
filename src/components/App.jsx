@@ -1,11 +1,24 @@
-import MyContacts from './Phonebook/MyContacts';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-const App = () => {
+import Navbar from './Phonebook/Navbar/Navbar';
+import UserRoutes from './UserRoutes';
+
+import { current } from '../components/redux/auth/auth-operations';
+
+function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(current());
+  }, [dispatch]);
+
   return (
-    <>
-      <MyContacts />
-    </>
+    <div className="App">
+      <Navbar />
+      <UserRoutes />
+    </div>
   );
-};
+}
 
 export default App;

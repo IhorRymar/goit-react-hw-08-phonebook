@@ -1,0 +1,23 @@
+.navbar {
+  height: 90px;
+  /* padding-top: 75px;
+  padding-bottom: 75px; */
+}
+
+.navbarTitle {
+  display: flex;
+  align-items: center;
+  --bs-navbar-brand-font-size: 26px;
+  font-weight: bold;
+  --bs-navbar-brand-color: #0d6efd;
+}
+
+.navbarLink {
+  --bs-navbar-active-color: red;
+  --bs-nav-link-font-size: 20px;
+}
+
+.navbarUserContainer {
+  display: flex;
+  align-items: center;
+}

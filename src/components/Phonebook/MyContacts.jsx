@@ -1,62 +1,31 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import ContactForm from './ContactForm';
+import ContactFilter from './ContactFilter';
 import ContactList from './ContactList';
 import Container from './Container';
 
-import {
-  fetchContacts,
-  // addContact,
-  // removeContact,
-} from 'components/redux/contacts/contacts-operations';
-import { setFilter } from 'components/redux/filter/filter-actions';
-// import { getFilteredContacts } from 'components/redux/contacts/contacts-selectors';
-import { getFilter } from 'components/redux/filter/filter-selectors';
+import { fetchContacts } from 'components/redux/contacts/contacts-operations';
 
 import css from '../Phonebook/ContactsStyle.module.css';
 
 const MyContacts = () => {
-  // const contacts = useSelector(getFilteredContacts);
-  const filter = useSelector(getFilter);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  // const onAddContact = payload => {
-  //   dispatch(addContact(payload));
-  // };
-
-  // const onRemoveContact = payload => {
-  //   dispatch(removeContact(payload));
-  // };
-
-  const onSetFilter = ({ target }) => {
-    dispatch(setFilter(target.value));
-  };
-
   return (
-    <div>
-      <Container className={css.title} title="Phonebook">
-        <ContactForm
-        // onSubmit={onAddContact}
-        />
+    <div className={css.myContactsContainer}>
+      <Container className={css.title} title="New contact">
+        <ContactForm />
       </Container>
-      <Container className={css.title} title="Contacts">
-        <input
-          className={css.input}
-          name="filter"
-          type="text"
-          placeholder="Find contact..."
-          value={filter}
-          onChange={onSetFilter}
-        ></input>
-        <ContactList
-        // contacts={contacts} removeContact={onRemoveContact}
-        />
+
+      <Container className={css.title} title="My contacts">
+        <ContactFilter />
+        <ContactList />
       </Container>
     </div>
   );
