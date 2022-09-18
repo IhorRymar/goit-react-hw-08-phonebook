@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
-
 import Navbar from 'react-bootstrap/Navbar';
+
+import { NavLink } from 'react-router-dom';
 
 import NavbarMenu from './NavbarMenu';
 import NavbarAuth from './NavbarAuth';
@@ -16,7 +17,7 @@ const Header = () => {
     <div>
       <Navbar bg="light" variant="light" className={css.navbar}>
         <Container>
-          <Navbar.Brand href="/" className={css.navbarTitle}>
+          <Navbar.Brand as={NavLink} to="/" className={css.navbarTitle}>
             Phonebook
           </Navbar.Brand>
           {isLogin && <NavbarMenu />}
