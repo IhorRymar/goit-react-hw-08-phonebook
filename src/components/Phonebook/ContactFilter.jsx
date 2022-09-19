@@ -19,7 +19,7 @@ const ContactFilter = () => {
   return (
     <Form className={css.filterForm}>
       <Form.Group className="mb-3" controlId="formContactName">
-        <Form.Label>Phone number</Form.Label>
+        <Form.Label>Contact name</Form.Label>
         <Form.Control
           type="text"
           placeholder="Find contact"

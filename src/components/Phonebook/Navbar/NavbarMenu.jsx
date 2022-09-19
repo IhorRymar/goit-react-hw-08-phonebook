@@ -1,17 +1,20 @@
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 
-import Nav from 'react-bootstrap/Nav';
+// import Navbar from 'react-bootstrap/Navbar';
+// import Nav from 'react-bootstrap/Nav';
 
-import css from '../Navbar/NavbarStyles.module.css';
+// import css from '../Navbar/NavbarStyles.module.css';
 
-const NavbarMenu = () => {
-  return (
-    <Nav>
-      <Nav.Link as={NavLink} to="/contacts" className={css.navbarLink}>
-        Contacts
-      </Nav.Link>
-    </Nav>
-  );
-};
+// const NavbarMenu = () => {
+//   return (
+//     <Navbar.Collapse id="responsive-navbar-nav">
+//       <Nav className="mr-auto">
+//         <Nav.Link as={NavLink} to="/contacts" className={css.navbarLink}>
+//           Contacts
+//         </Nav.Link>
+//       </Nav>
+//     </Navbar.Collapse>
+//   );
+// };
 
-export default NavbarMenu;
+// export default NavbarMenu;

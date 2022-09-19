@@ -18,3 +18,16 @@
   justify-content: center;
   margin-top: 100px;
 }
+
+.alertMessage {
+  margin-bottom: 0;
+  margin-top: 15px;
+  padding: 5px 90px;
+}
+
+.contactsContainer {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

@@ -4,10 +4,7 @@
 
 ul {
   padding: 0;
-}
-
-span {
-  margin-right: 10px;
+  /* margin: 0 auto; */
 }
 
 .item {
@@ -29,10 +26,14 @@ span {
 .container {
   display: flex;
   flex-direction: column;
+  /* margin-bottom: 40px; */
+  padding: 25px;
+  border: 1px solid #0d6efd;
+  border-radius: 15px;
 }
 
 .container:not(:last-child) {
-  margin-right: 75px;
+  margin-bottom: 40px;
 }
 
 .contactForm {
@@ -40,5 +41,9 @@ span {
 }
 
 .filterForm {
-  width: 320px;
+  width: 240px;
+}
+
+.delBtn {
+  padding: 5px 10px;
 }

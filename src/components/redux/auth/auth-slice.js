@@ -52,12 +52,6 @@ const authSlice = createSlice({
       store.token = '';
       store.isLogin = false;
     },
-    // [logout.fulfilled]: (store, { payload }) => {
-    //   store.loading = false;
-    //   store.user = payload.user;
-    //   store.token = payload.token;
-    //   store.isLogin = false;
-    // },
     [logout.rejected]: (store, { payload }) => {
       store.loading = false;
       store.error = payload;
@@ -68,8 +62,8 @@ const authSlice = createSlice({
     },
     [current.fulfilled]: (store, { payload }) => {
       store.loading = false;
-      store.user = payload.user;
-      store.token = payload.token;
+      store.user = payload;
+      // store.token = payload.token;
       store.isLogin = true;
     },
     [current.rejected]: (store, { payload }) => {

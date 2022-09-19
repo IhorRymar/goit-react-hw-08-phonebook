@@ -3,7 +3,6 @@ import Navbar from 'react-bootstrap/Navbar';
 
 import { NavLink } from 'react-router-dom';
 
-import NavbarMenu from './NavbarMenu';
 import NavbarAuth from './NavbarAuth';
 import NavbarUser from './NavbarUser';
 
@@ -14,17 +13,23 @@ import css from '../Navbar/NavbarStyles.module.css';
 const Header = () => {
   const isLogin = useAuth();
   return (
-    <div>
-      <Navbar bg="light" variant="light" className={css.navbar}>
-        <Container>
+    <>
+      <Navbar
+        collapseOnSelect
+        expand="sm"
+        bg="light"
+        variant="light"
+        className={css.navbar}
+      >
+        <Container fluid="sm">
           <Navbar.Brand as={NavLink} to="/" className={css.navbarTitle}>
             Phonebook
           </Navbar.Brand>
-          {isLogin && <NavbarMenu />}
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           {isLogin ? <NavbarUser /> : <NavbarAuth />}
         </Container>
       </Navbar>
-    </div>
+    </>
   );
 };
 

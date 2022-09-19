@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 
+import Alert from 'react-bootstrap/Alert';
+
 import LoginForm from 'components/Phonebook/AuthForms/LoginForm';
 
 import { login } from 'components/redux/auth/auth-operations';
@@ -20,7 +22,11 @@ const LoginPage = () => {
     <div className={css.loginContainer}>
       <h2>Login</h2>
       <LoginForm onSubmit={onLogin} />
-      {status && <p style={{ color: 'red' }}>{message}</p>}
+      {status && (
+        <Alert variant={'danger'} className={css.alertMessage}>
+          {message}
+        </Alert>
+      )}
     </div>
   );
 };

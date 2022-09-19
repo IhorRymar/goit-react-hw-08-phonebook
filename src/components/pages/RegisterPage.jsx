@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 
+import Alert from 'react-bootstrap/Alert';
+
 import RegisterForm from 'components/Phonebook/AuthForms/RegisterForm';
 
 import { signup } from 'components/redux/auth/auth-operations';
@@ -20,7 +22,11 @@ const RegisterPage = () => {
     <div className={css.registrationContainer}>
       <h2>Registration</h2>
       <RegisterForm onSubmit={onRegister} />
-      {status && <p style={{ color: 'red' }}>{message}</p>}
+      {status && (
+        <Alert variant={'success'} className={css.alertMessage}>
+          {message}
+        </Alert>
+      )}
     </div>
   );
 };

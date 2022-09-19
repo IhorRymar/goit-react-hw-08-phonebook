@@ -6,6 +6,8 @@ import UserRoutes from './UserRoutes';
 
 import { current } from '../components/redux/auth/auth-operations';
 
+import '../../src/index.css';
+
 function App() {
   const dispatch = useDispatch();
 

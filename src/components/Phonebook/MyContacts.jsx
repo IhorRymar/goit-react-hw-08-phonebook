@@ -18,16 +18,23 @@ const MyContacts = () => {
   }, [dispatch]);
 
   return (
-    <div className={css.myContactsContainer}>
-      <Container className={css.title} title="New contact">
+    <>
+      <Container
+        fluid="sm"
+        className={css.newContactContainer}
+        title="New contact"
+      >
         <ContactForm />
       </Container>
-
-      <Container className={css.title} title="My contacts">
+      <Container
+        fluid="sm"
+        className={css.myContactsContainer}
+        title="My contacts"
+      >
         <ContactFilter />
         <ContactList />
       </Container>
-    </div>
+    </>
   );
 };
 

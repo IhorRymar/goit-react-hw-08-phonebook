@@ -4,14 +4,14 @@ import css from '../pages/PagesStyles.module.css';
 
 const HomePage = () => {
   return (
-    <Container className={css.cardContainer}>
+    <Container fluid="sm" className={css.cardContainer}>
       <div>
         <h1
           style={{
             fontSize: '34px',
             color: '#0d6efd',
             borderBottom: '2px solid darkgray',
-            width: '671px',
+            width: '500px',
             display: 'flex',
             justifyContent: 'space-evenly',
             marginBottom: '100px',

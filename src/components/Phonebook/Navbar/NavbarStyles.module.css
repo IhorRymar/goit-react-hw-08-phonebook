@@ -1,7 +1,3 @@
-.navbar {
-  height: 90px;
-}
-
 .navbarTitle {
   display: flex;
   align-items: center;
@@ -9,6 +5,16 @@
   font-weight: bold;
   --bs-navbar-brand-color: #0d6efd;
 }
+
+.navbarAuthContainer {
+  justify-content: flex-end;
+}
+
+.navbarMenuContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
 .navbarLinkReg {
   --bs-navbar-active-color: green;
   --bs-nav-link-font-size: 20px;
@@ -22,6 +28,17 @@
 }
 
 .navbarUserContainer {
+  margin-right: auto;
   display: flex;
   align-items: center;
+}
+
+.navbarLink {
+  --bs-navbar-active-color: red;
+  --bs-nav-link-font-size: 20px;
+  font-weight: 500;
+}
+
+.navbarUserUser {
+  font-weight: 500;
 }
